@@ -96,7 +96,7 @@ export default function useRange(props: TdDateRangePickerProps) {
     prefixIcon,
     readonly: !allowInput,
     placeholder,
-    activeIndex,
+    activeIndex: popupVisible ? activeIndex : undefined,
     suffixIcon: suffixIcon || <CalendarIcon />,
     className: classNames({
       [`${name}__input--placeholder`]: isHoverCell,
@@ -182,7 +182,7 @@ export default function useRange(props: TdDateRangePickerProps) {
     if (!value) {
       setInputValue([]);
       setCacheValue([]);
-      setTimeValue([]);
+      setTimeValue([dayjs().format(timeFormat), dayjs().format(timeFormat)]);
       return;
     }
     if (!isValidDate(value, 'valueType')) return;

@@ -83,6 +83,11 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
   // 日期点击
   function onCellClick(date: Date) {
     setIsHoverCell(false);
+    // date 模式自动切换年月
+    if (mode === 'date') {
+      setYear(date.getFullYear());
+      setMonth(date.getMonth());
+    }
     if (enableTimePicker) {
       setCacheValue(formatDate(date));
     } else {
@@ -160,19 +165,21 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
   function onYearChange(year: number) {
     setYear(year);
 
-    const nextDate = dayjs(inputValue || new Date(), format)
-      .year(year)
-      .toDate();
+    let nextDateObj = dayjs(inputValue || new Date(), format);
+    if (nextDateObj) nextDateObj = dayjs(inputValue || new Date());
+    const nextDate = nextDateObj.year(year).toDate();
     setInputValue(formatDate(nextDate));
+    setCacheValue(formatDate(nextDate));
   }
 
   function onMonthChange(month: number) {
     setMonth(month);
 
-    const nextDate = dayjs(inputValue || new Date(), format)
-      .month(month)
-      .toDate();
+    let nextDateObj = dayjs(inputValue || new Date(), format);
+    if (nextDateObj) nextDateObj = dayjs(inputValue || new Date());
+    const nextDate = nextDateObj.month(month).toDate();
     setInputValue(formatDate(nextDate));
+    setCacheValue(formatDate(nextDate));
   }
 
   const panelProps = {

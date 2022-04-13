@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import classNames from 'classnames';
 
 import { TimeIcon } from 'tdesign-icons-react';
-import noop from '../_util/noop';
+// import noop from '../_util/noop';
 import useDefaultValue from '../_util/useDefaultValue';
 import useConfig from '../_util/useConfig';
 import { RangeInputPopup } from '../range-input';
@@ -29,8 +29,8 @@ const TimeRangePicker: FC<TimeRangePickerProps> = (props) => {
     steps = [1, 1, 1],
     value,
     onChange,
-    onBlur = noop,
-    onFocus = noop,
+    // onBlur = noop,
+    // onFocus = noop,
     // onInput = noop,
     style,
     className,
@@ -69,8 +69,8 @@ const TimeRangePicker: FC<TimeRangePickerProps> = (props) => {
           placeholder: !value ? placeholder : undefined,
           suffixIcon: <TimeIcon />,
           onClear: handleClear,
-          onBlur,
-          onFocus,
+          // onBlur,
+          // onFocus,
           readonly: !allowInput,
           size,
         }}
